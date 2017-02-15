@@ -110,16 +110,24 @@ var watchExampleVM = new Vue({
 
 var h = 'hello';
 
-var dotView = new Vue({
-  el: '.dot-view',
-  data: {
-    message: 'Hello World'
-  }
-});
-
 var repeatApp = new Vue({
   el: '#repeat',
   data: {
     items: ['Andy', 'Peter']
   }
-})
+});
+
+var dotView = new Vue({
+  el: '.dot-view',
+  data: {
+    items: function() {
+      var status = [ '', 'running', 'warning', 'stopped' ];
+      var data = [];
+      for ( var i = 0 ; i < 100 ; i++ )
+        data.push({
+          status: status[Math.floor(Math.random() * 4) + 0]
+        });
+      return data;
+    }
+  }
+});
